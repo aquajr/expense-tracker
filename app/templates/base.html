@@ -18,17 +18,20 @@
             <!-- LINK -->
             <div class="row text-center">
                 <div class="col-md-4">
-                    <h1><a href="{{ url_for('index') }}">Home</a></h1>
+                    <h1><a href="{{ url_for('index') }}">Family Expense Tracker</a></h1>
                 </div>
                 <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <h1><a href="{{ url_for('register') }}">Register</a></h1>
+                </div>
+                <div class="col-md-2">
                     {% if current_user .is_authenticated %}
                     <h1><a href="{{ url_for('logout') }}">Logout</a></h1>
                     {% else %}
                     <h1><a href="{{ url_for('login') }}">Login</a></h1>
                     {% endif %}
-                </div>
-                <div class="col-md-4">
-                    <h1><a href="{{ url_for('register') }}">Register</a></h1>
                 </div>
             </div>
             <hr>

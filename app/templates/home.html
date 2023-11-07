@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+{% block content %}
+<h1>Your Financial Health</h1>
+<div class ="row text-center">
+    <div class="col-md-6">
+ 
+    </div>
+
+    <div class="col-md-6" style="margin-top: 200px;">
+        <div id="my-pie-chart">
+
+        </div>
+    </div>
+</div>
+{% endblock %}
