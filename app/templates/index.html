@@ -2,17 +2,23 @@
 
 {% block content %}
 <div class ="row text-center">
-    <h1>Expense tracker</h1>
     <div class="col-md-6">
         <p>
-            I a column
+            <img src="{{url_for('static',filename='images/money.jpg')}}" style="width: 750px; height:750px;" alt="Money">
         </p>
     </div>
 
-    <div class="col-md-6">
-        <p>
-            I am column
-        </p>
+    <div class="col-md-6" style="margin-top: 200px;">
+        <h1 style="color:rgb(13, 143, 13);">Can’t track you money?</h1>
+        <h5>     
+            Family Expense tracker<br>
+         makes tracking money easier<br>
+                   Join Now </h5>
+        <form methods=['GET', 'POST'] action="/register" >
+            <input type="submit" name="Redirect" value="Register" style=
+            "color: black; background-color: green; border-radius: 12px;
+            padding: 10px; font-size: 20px; border: green; " />
+        </form>
     </div>
 </div>
 {% endblock %}
