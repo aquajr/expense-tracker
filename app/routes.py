@@ -1,6 +1,6 @@
 from app import app, db
 from app.models import User
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 from flask import render_template, flash, redirect, url_for
 from app.forms import LoginForm, RegisterForm
 
@@ -11,10 +11,11 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/')
-@app.route('/home')
-def index():
-    """Index URL"""
-    return render_template('index.html', title='Index Page')
+@app.route('/landing')
+def landing():
+    """Landing URL"""
+    return render_template('landing.html', title='Index Page')
+
 
 
 
@@ -37,11 +38,17 @@ def register():
     """Register URL"""
     form = RegisterForm()
     if form.validate_on_submit():
-       # user = User(email=form.email.data)
-        #user.set_password(form.password.data)
-        #db.session.add(user)
-        #db.session.commit()
-        flash(f'You have been registered successfuly')
+        user = User(email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('You have been registered successfuly. Login to continue')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
     
+
+@app.route('/home')
+@login_required
+def home():
+    """Home URL"""
+    return render_template('home.html', title='Home')

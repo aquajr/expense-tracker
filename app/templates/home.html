@@ -1,19 +1,65 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    </head>
+
 
 {% block content %}
-<h1>Your Financial Health</h1>
 <div class ="row text-center">
-    <div class="col-md-6">
- 
+    <h1>Your Financial Health</h1>
+    <div class="col-md-6" style="margin-top: 100px;">
+        <table style="width:100%;">
+            <tr>
+              <th style="font-size: 30px; color: aquamarine; border:1px solid black; text-align: left;
+            padding: 15px;">Amount</th>
+              <th style="font-size: 30px; color: aquamarine; border:1px solid black; text-align: left;
+            padding: 15px;">Source</th>
+              <th style="font-size: 30px; color: aquamarine; border:1px solid black; text-align: left;
+            padding: 15px;">Date</th>
+            </tr>
+            <tr>
+              <td style="border:1px solid black; text-align: left;
+            padding: 30px;"></td>
+              <td style="border:1px solid black; text-align: left;
+            padding: 30px;"></td>
+              <td style="border:1px solid black; text-align: left;
+            padding: 30px;"></td>
+            </tr>
+            <tr>
+              <td style="border:1px solid black; text-align: left;
+            padding: 30px;"></td>
+              <td style="border:1px solid black; text-align: left;
+            padding: 30px;"></td>
+              <td style="border:1px solid black; text-align: left;
+            padding: 30px;"></td>
+            </tr>
+            <tr>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+                <td style="border:1px solid black; text-align: left;
+              padding: 30px;"></td>
+              </tr>
+          </table>
     </div>
-
-    <div class="col-md-6" style="margin-top: 200px;">
-        <div id="my-pie-chart">
+    <div class="col-md-6" style="margin-top: 100px;">
+        <h2 style="color: aquamarine; margin-right: 440px;">Expense Data</h2>
+        <div class="pie-chart" style="height: 300px;
+        width: 300px; border-radius: 60%; background: conic-gradient(red 90deg, blue 270deg);">
 
         </div>
     </div>
