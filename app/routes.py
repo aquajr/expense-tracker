@@ -90,3 +90,19 @@ def expense():
         return redirect(url_for('expense'))
     expenses = Expense.query.all()
     return render_template('expense.html', title='Expense', form=form, expenses=expenses)
+
+@app.route('/expense/<int:id>', methods=['GET', 'POST'])
+def expenseitem(id):
+    expense = Expense.query.filter_by(id=id).first()
+    db.session.delete(expense)
+    db.session.commit()
+    flash(f'Expense {expense.item} has been deleted successfuly')
+    return redirect(url_for('expense'))
+
+@app.route('/income/<int:id>', methods=['GET', 'POST'])
+def incomesource(id):
+    income = Income.query.filter_by(id=id).first()
+    db.session.delete(income)
+    db.session.commit()
+    flash(f'Income {income.source} has been deleted successfuly')
+    return redirect(url_for('income'))
