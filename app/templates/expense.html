@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row text-center">
+  <div class="col-lg-12">
+    <h1>{{ title }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <form role="form" action="" method="post" novalidate>
+      {{ form.hidden_tag() }}
+      <div class="row">
+          <div class="col-lg-4 mb-4">                                                
+              <div class="form-group position-relative">
+                  {{ form.item.label }} <span class="text-danger">*</span> <br>
+                  {{ form.item(class_='form-control') }}
+                  {% for error in form.item.errors %}
+                      <span style="color: red;">{{error}}</span>
+                  {% endfor %}
+              </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+              <div class="form-group position-relative">
+                  {{ form.amount.label }} <span class="text-danger">*</span> <br>
+                  {{ form.amount(class_='form-control') }}
+                  {% for error in form.amount.errors %}
+                      <span style="color: red;">{{error}}</span>
+                  {% endfor %}
+              </div>
+          </div>
+          <div class="col-lg-4 mb-4 text-center">
+              {{ form.submit(class_='btn bg-danger btn-lg btn-rounded w-25 mt-4 mb-0') }}
+          </div>
+      </div>
+  </form>
+  </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th style="color: red;">
+                            Item
+                        </th>
+                        <th style="color: red;">
+                            Amount
+                        </th>
+                        <th style="color: red;">
+                            Date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for expense in expenses %}
+                    <tr>
+                        <td>
+                            {{ expense.item }}
+                        </td>
+                        <td>
+                            {{ expense.amount }}
+                        </td>
+                        <td>
+                            {{ expense.timestamp }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

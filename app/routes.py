@@ -1,8 +1,8 @@
 from app import app, db
-from app.models import User
-from flask_login import login_user, logout_user, login_required
+from app.models import User, Income, Expense
+from flask_login import login_user, logout_user, login_required, current_user
 from flask import render_template, flash, redirect, url_for
-from app.forms import LoginForm, RegisterForm
+from app.forms import LoginForm, RegisterForm, IncomeForm, ExpenseForm
 
 
 @app.route('/logout')
@@ -29,7 +29,7 @@ def login():
             return redirect (url_for('login'))
         login_user(user, remember=form.remember_me.data)
         flash(f'Welcome {form.email.data}')
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     return render_template('login.html', title='Login', form=form)
 
 
@@ -51,4 +51,42 @@ def register():
 @login_required
 def home():
     """Home URL"""
-    return render_template('home.html', title='Home')
+    incomes =Income.query.all()
+    expenses = Expense.query.all()
+    return render_template('home.html', title='Your Financial Health', incomes=incomes, expenses=expenses)
+
+
+@app.route('/income', methods=['GET', 'POST'])
+def income():
+    """Landing URL"""
+    form = IncomeForm()
+    if form.validate_on_submit():
+        income = Income(
+            source = form.source.data,
+            amount = form.amount.data,
+            author = current_user
+        )
+        db.session.add(income)
+        db.session.commit()
+        flash('Income saved')
+        return redirect(url_for('income'))
+    incomes = Income.query.all()
+    return render_template('income.html', title='Income', form=form, incomes=incomes)
+
+
+@app.route('/expense', methods=['GET', 'POST'])
+def expense():
+    """Landing URL"""
+    form = ExpenseForm()
+    if form.validate_on_submit():
+        expense = Expense(
+            item = form.item.data,
+            amount = form.amount.data,
+            author = current_user
+        )
+        db.session.add(expense)
+        db.session.commit()
+        flash('Expense saved')
+        return redirect(url_for('expense'))
+    expenses = Expense.query.all()
+    return render_template('expense.html', title='Expense', form=form, expenses=expenses)

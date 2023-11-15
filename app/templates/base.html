@@ -12,28 +12,58 @@
          rel="stylesheet" 
          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
          crossorigin="anonymous">
-    </head>
+    </head> 
     <body>
         <div class="row">
             <div class="text-center">
                 <!-- LINK -->
-                <div class="row text-center">                    
+                <div class="row text-center" style="background-color: green; list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;">                    
                     {% if current_user.is_anonymous %}
                     <div class="col-md-4">
-                        <h1><a href="{{ url_for('landing') }}">Family Expense Tracker</a></h1>
+                        <h1><a href="{{ url_for('landing') }}" style="
+                            color: black;
+                            text-align: center;
+                            text-decoration: none;">Family Expense Tracker</a></h1>
                     </div>
                     <div class="col-md-4">
-                        <h1><a href="{{ url_for('register') }}">Register</a></h1>
+                        <h1><a href="{{ url_for('register') }}" style="
+                            color: black;
+                            text-align: center;
+                            text-decoration: none;">Register</a></h1>
                     </div>
                     <div class="col-md-4">
-                        <h1><a href="{{ url_for('login') }}">Login</a></h1>
+                        <h1><a href="{{ url_for('login') }}" style="
+                            color: black;
+                            text-align: center;
+                            text-decoration: none;">Login</a></h1>
                     </div>
                     {% else %}
-                        <div class="col-md-6">
-                            <h1><a href="{{ url_for('home') }}">Family Expense Tracker</a></h1>
+                        <div class="col-md-4">
+                            <h1><a href="{{ url_for('home') }}" style="
+                                color: black;
+                                text-align: center;
+                                text-decoration: none;">Family Expense Tracker</a></h1>
                         </div>
-                        <div class="col-md-6">
-                            <h1><a href="{{ url_for('logout') }}">Logout</a></h1>
+                        <div class="col-md-3">
+                            <h1><a href="{{ url_for('income') }}" style="
+                                color: black;
+                                text-align: center;
+                                text-decoration: none; float:right">Income</a></h1>
+                        </div>
+                        <div class="col-md-3">
+                            <h1><a href="{{ url_for('expense') }}" style="
+                                color: black;
+                                text-align: center;
+                                text-decoration: none; float:right">Expense</a></h1>
+                        </div>
+                        <div class="col-md-2">
+                            <h1><a href="{{ url_for('logout') }}" style="
+                                color: black;
+                                text-align: center;
+                                text-decoration: none; float:right">Logout</a></h1>
                         </div>
                     {% endif %}
                 </div>
@@ -46,7 +76,7 @@
                     {% with messages = get_flashed_messages() %}
                         {% if messages %}
                             {% for message in messages %}
-                                <div class="alert alert-primary" role="alert">
+                                <div class="alert alert-success" role="alert">
                                     {{ message }}
                                 </div>
                             {% endfor %}
