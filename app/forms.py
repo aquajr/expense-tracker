@@ -22,10 +22,10 @@ class IncomeForm(FlaskForm):
     '''Income Form'''
     source = StringField('Source', validators=[DataRequired(), Length(1, 64)])
     amount = IntegerField('Amount', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Add')
 
 class ExpenseForm(FlaskForm):
     '''Expense Form'''
     item = StringField('Item', validators=[DataRequired(), Length(1, 64)])
     amount = IntegerField('Amount', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Add')
