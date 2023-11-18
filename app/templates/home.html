@@ -34,7 +34,7 @@
                       {{ income.amount }}
                   </td>
                   <td>
-                      {{ income.timestamp }}
+                    {{ moment(income.timestamp).format('llll') }}
                   </td>
               </tr>
               {% endfor %}
@@ -69,7 +69,7 @@
                       {{ expense.amount }}
                   </td>
                   <td>
-                      {{ expense.timestamp }}
+                    {{ moment(expense.timestamp).format('llll') }}
                   </td>
               </tr>
               {% endfor %}

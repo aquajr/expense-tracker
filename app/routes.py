@@ -51,8 +51,8 @@ def register():
 @login_required
 def home():
     """Home URL"""
-    incomes =Income.query.all()
-    expenses = Expense.query.all()
+    incomes = current_user.incomes.all()
+    expenses = current_user.expenses.all()
     return render_template('home.html', title='Your Financial Health', incomes=incomes, expenses=expenses)
 
 
@@ -70,7 +70,7 @@ def income():
         db.session.commit()
         flash('Income saved')
         return redirect(url_for('income'))
-    incomes = Income.query.all()
+    incomes = current_user.incomes.all()
     return render_template('income.html', title='Income', form=form, incomes=incomes)
 
 
@@ -88,7 +88,7 @@ def expense():
         db.session.commit()
         flash('Expense saved')
         return redirect(url_for('expense'))
-    expenses = Expense.query.all()
+    expenses = current_user.expenses.all()
     return render_template('expense.html', title='Expense', form=form, expenses=expenses)
 
 @app.route('/expense/<int:id>', methods=['GET', 'POST'])
