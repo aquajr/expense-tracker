@@ -1,7 +1,9 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db, login
+from app import db, login, app
 from flask_login import UserMixin
 from datetime import datetime
+import jwt
+from time import time
 
 @login.user_loader
 def login_user(id):
@@ -13,6 +15,24 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     incomes = db.relationship('Income', backref='author', lazy='dynamic')
     expenses = db.relationship('Expense', backref='author', lazy='dynamic')
+
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            app.config['SECRET_KEY'],
+            algorithm='HS256'
+        )
+
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id= jwt.decode(
+                token,
+                app.config['SECRET_KEY'],
+                algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return User.query.get(id)
 
 
     def __repr__ (self):
